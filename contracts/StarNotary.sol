@@ -8,22 +8,24 @@ contract StarNotary is ERC721 {
 
     // Star data
     struct Star {
-        string name;
+        string name;        // a short name to the star token
     }
 
     // Implement Task 1 Add a name and symbol properties
     // name: Is a short name to your token
+    string public name = "Cosmic Stars Exchange Test";
     // symbol: Is a short string like 'USD' -> 'American Dollar'
-    
+    string public symbol = "CSET";    
 
     // mapping the Star with the Owner Address
     mapping(uint256 => Star) public tokenIdToStarInfo;
     // mapping the TokenId and price
     mapping(uint256 => uint256) public starsForSale;
-
     
     // Create Star using the Struct
     function createStar(string memory _name, uint256 _tokenId) public { // Passing the name and tokenId as a parameters
+        require(bytes(_name).length > 0);
+
         Star memory newStar = Star(_name); // Star is an struct so we are creating a new Star
         tokenIdToStarInfo[_tokenId] = newStar; // Creating in memory the Star -> tokenId mapping
         _mint(msg.sender, _tokenId); // _mint assign the the star with _tokenId to the sender address (ownership)
@@ -35,18 +37,23 @@ contract StarNotary is ERC721 {
         starsForSale[_tokenId] = _price;
     }
 
-
     // Function that allows you to convert an address into a payable address
     function _make_payable(address x) internal pure returns (address payable) {
         return address(uint160(x));
     }
 
-    function buyStar(uint256 _tokenId) public  payable {
+    function buyStar(uint256 _tokenId) public payable {
         require(starsForSale[_tokenId] > 0, "The Star should be up for sale");
+
+        // retrieve necessary info
         uint256 starCost = starsForSale[_tokenId];
         address ownerAddress = ownerOf(_tokenId);
         require(msg.value > starCost, "You need to have enough Ether");
+
+        // handle token transfer        
         _transferFrom(ownerAddress, msg.sender, _tokenId); // We can't use _addTokenTo or_removeTokenFrom functions, now we have to use _transferFrom
+
+        // handle ether transfer
         address payable ownerAddressPayable = _make_payable(ownerAddress); // We need to make this conversion to be able to use transfer() function to transfer ethers
         ownerAddressPayable.transfer(starCost);
         if(msg.value > starCost) {
@@ -54,23 +61,46 @@ contract StarNotary is ERC721 {
         }
     }
 
-    // Implement Task 1 lookUptokenIdToStarInfo
-    function lookUptokenIdToStarInfo (uint _tokenId) public view returns (string memory) {
-        //1. You should return the Star saved in tokenIdToStarInfo mapping
+    // Function to looks up the star using the Token ID, and then returns the name of the star
+    function lookUptokenIdToStarInfo(uint _tokenId) public view returns (string memory) {
+        require(_exists(_tokenId), "lookup for nonexistent token");
+
+        Star memory star = tokenIdToStarInfo[_tokenId];
+        return star.name;
     }
 
-    // Implement Task 1 Exchange Stars function
+    // Function for 2 users can exchange their star tokens...
+    // Do not worry about the price, just write code to exchange stars between users.
     function exchangeStars(uint256 _tokenId1, uint256 _tokenId2) public {
         //1. Passing to star tokenId you will need to check if the owner of _tokenId1 or _tokenId2 is the sender
         //2. You don't have to check for the price of the token (star)
         //3. Get the owner of the two tokens (ownerOf(_tokenId1), ownerOf(_tokenId1)
         //4. Use _transferFrom function to exchange the tokens.
+
+        require(_tokenId1 != _tokenId2);
+        address addressOfTokenId1 = ownerOf(_tokenId1);
+        require(addressOfTokenId1 != address(0), "exchange of nonexistent _tokenId1");
+        address addressOfTokenId2 = ownerOf(_tokenId2);
+        require(addressOfTokenId2 != address(0), "exchange of nonexistent _tokenId2");
+
+        require((addressOfTokenId1 == msg.sender) || (addressOfTokenId2 == msg.sender),
+            "you must own one of the two tokens");
+        require(addressOfTokenId1 != addressOfTokenId2, "both tokens belong to the same account");
+
+        _transferFrom(addressOfTokenId1, addressOfTokenId2, _tokenId1);
+        _transferFrom(addressOfTokenId2, addressOfTokenId1, _tokenId2);
     }
 
-    // Implement Task 1 Transfer Stars
+    // transfer a star from the address of the caller
     function transferStar(address _to1, uint256 _tokenId) public {
         //1. Check if the sender is the ownerOf(_tokenId)
         //2. Use the transferFrom(from, to, tokenId); function to transfer the Star
+
+        require(_exists(_tokenId), "transfer for nonexistent token");
+        require(msg.sender == ownerOf(_tokenId), "caller is not owner");
+        require(_to1 != msg.sender, "don't transfer to yourself");
+
+        transferFrom(msg.sender, _to1, _tokenId);
     }
 
 }
