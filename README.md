@@ -43,15 +43,15 @@ root@0c227cbd3cc5:/mnt/devroot/src/udacity-p2-nd1309-starnotary# cat app/package
 
 ### Description
 
-My ERC-721 Token Name: "Cosmic Stars Exchange Test"
-My ERC-721 Token Symbol: "CSET"
+- My ERC-721 Token Name: "Cosmic Stars Exchange Test"
+- My ERC-721 Token Symbol: "CSET"
 
-My “Token Address” on the Rinkeby Network：[CSET](https://rinkeby.etherscan.io/address/0xdeB5a8dC4403f6FbD128A11Fc4d0A239fc380137)
+- My “Token Address” on the Rinkeby Network：[CSET](https://rinkeby.etherscan.io/address/0xdeB5a8dC4403f6FbD128A11Fc4d0A239fc380137)
 
 
 ### Verification
 
-[test pass on local ganache-cli](./runlog/truffle-test-local-ganachi-devenv.log)
-[migrate to public rinkeby network](./runlog/truffle-migrate-rinkeby-reset.log)
-![frontend runlog](./runlog/CSET-rinkeby-mint4-look2.png)
-![frontend runlog](./runlog/CSET-rinkeby-mint4-look4.png)
+- [test pass on local ganache-cli](./runlog/truffle-test-local-ganachi-devenv.log)
+- [migrate to public rinkeby network](./runlog/truffle-migrate-rinkeby-reset.log)
+- ![frontend runlog](./runlog/CSET-rinkeby-mint4-look2.png)
+- ![frontend runlog](./runlog/CSET-rinkeby-mint4-look4.png)
