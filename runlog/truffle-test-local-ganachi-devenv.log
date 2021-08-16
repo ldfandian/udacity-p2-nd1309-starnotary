@@ -1,0 +1,98 @@
+root@0c227cbd3cc5:/mnt/devroot/src/udacity-p2-nd1309-starnotary# truffle compile
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+root@0c227cbd3cc5:/mnt/devroot/src/udacity-p2-nd1309-starnotary# truffle migrate --reset --network development
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+
+Starting migrations...
+======================
+> Network name:    'development'
+> Network id:      1337
+> Block gas limit: 6721975 (0x6691b7)
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0x830d8cf7cab8107ef12bb9dc0eff2e639a4f62da6e1616955a172875c54d8535
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x8FCAeD1B6025079e8AaAdfdc6ef527C58ab2227d
+   > block number:        759
+   > block timestamp:     1629135554
+   > account:             0xf1Ee211E9Fc527A80f71E25ee9aD46034709708C
+   > balance:             97.90426744
+   > gas used:            225237 (0x36fd5)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00450474 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00450474 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Replacing 'StarNotary'
+   ----------------------
+   > transaction hash:    0xb5fbf2bb9126cad214a3abac3c4f44ce34c69686fbe25b362c8a7001c6cdc4f0
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x4b2781af6112b72e33887Ae87448DAc094E743CD
+   > block number:        761
+   > block timestamp:     1629135555
+   > account:             0xf1Ee211E9Fc527A80f71E25ee9aD46034709708C
+   > balance:             97.85414554
+   > gas used:            2463732 (0x2597f4)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.04927464 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.04927464 ETH
+
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.05377938 ETH
+
+
+root@0c227cbd3cc5:/mnt/devroot/src/udacity-p2-nd1309-starnotary# truffle test                                 
+Using network 'development'.
+
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+
+  ✓ can Create a Star (199ms)
+  ✓ lets user1 put up their star for sale (377ms)
+  ✓ lets user1 get the funds after the sale (551ms)
+  ✓ lets user2 buy a star, if it is put up for sale (465ms)
+  ✓ lets user2 buy a star and decreases its balance in ether (397ms)
+  ✓ can add the star name and star symbol properly (365ms)
+  ✓ lets 2 users exchange stars (946ms)
+  ✓ lets a user transfer a star (1471ms)
+  ✓ lookUptokenIdToStarInfo test (461ms)
+
+  9 passing (5s)
+
+root@0c227cbd3cc5:/mnt/devroot/src/udacity-p2-nd1309-starnotary# 

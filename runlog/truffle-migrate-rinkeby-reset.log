@@ -1,0 +1,83 @@
+contract etherscan address:
+- https://rinkeby.etherscan.io/address/0xdeB5a8dC4403f6FbD128A11Fc4d0A239fc380137
+
+
+
+== verbose-log ==
+
+root@0c227cbd3cc5:/mnt/devroot/src/udacity-p2-nd1309-starnotary# truffle migrate --reset --network rinkeby
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+
+Starting migrations...
+======================
+> Network name:    'rinkeby'
+> Network id:      4
+> Block gas limit: 29970677 (0x1c950f5)
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > transaction hash:    0x1c1b8a78d41fe43773e2b2cccc6d1cf54fec2b83ecee814bfcc83b67ca3306f1
+   > Blocks: 1            Seconds: 13
+   > contract address:    0x85F4d34b3fe3D6154CE6DEc75e8Cdc9b67533C92
+   > block number:        9126202
+   > block timestamp:     1629133693
+   > account:             0x19B09eC81CDcD22270414B79240392B7172cA59e
+   > balance:             8.751724243953667784
+   > gas used:            226537 (0x374e9)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00226537 ETH
+
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 1 (block: 9126203)
+   > confirmation number: 2 (block: 9126204)
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00226537 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'StarNotary'
+   ----------------------
+   > transaction hash:    0xa78905c448462131019b94e7a0fa01d1d88ea630de9fc7966d6adf677df4639d
+   > Blocks: 1            Seconds: 9
+   > contract address:    0xdeB5a8dC4403f6FbD128A11Fc4d0A239fc380137
+   > block number:        9126206
+   > block timestamp:     1629133753
+   > account:             0x19B09eC81CDcD22270414B79240392B7172cA59e
+   > balance:             8.726577293953667784
+   > gas used:            2468932 (0x25ac44)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02468932 ETH
+
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 1 (block: 9126207)
+   > confirmation number: 2 (block: 9126208)
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.02468932 ETH
+
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.02695469 ETH
+
